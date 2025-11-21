@@ -13,7 +13,7 @@
 @prefix vann:    <http://purl.org/vocab/vann/> .
 @prefix csvw: <http://www.w3.org/ns/csvw#> .
 
-@base <https://w3id.org/mathis/public/ontology>
+@base <https://w3id.org/mathis/public/ontology> .
 @prefix coater: <https://w3id.org/mathis/public/ontology#> .
 
 # Ontology Declaration
