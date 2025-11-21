@@ -22,8 +22,15 @@
     #owl:imports <https://w3id.org/emmo/domain/characterisation-methodology/chameo-inferred> ;
     #owl:imports < https://raw.githubusercontent.com/emmo-repo/domain-characterisation-methodology/refs/heads/main/chameo.ttl> ;
     #owl:imports <http://www.w3.org/ns/csvw> ;
-    rdfs:label "Custom ontology for describing coater for batteries." ;
-    rdfs:comment "An extension of the EMMO ontology defining the equipment and processes for the coater equipment." .
+    rdfs:label "Custom ontology for describing Mathis coater for batteries" ;
+    rdfs:comment "An extension of the EMMO ontology defining the equipment and processes for the coater equipment." ;
+    dcterms:title "Custom ontology for describing Mathis coater for batteries"@en ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    #owl:versionInfo "1.0.0" ;
+    #owl:versionIRI  <https://w3id.org/mathis/public/ontology/1.0.0> ;
+    dcterms:issued   "2025-10-23"^^xsd:date ;
+    dcterms:modified "2025-11-21"^^xsd:date ;
+    dcterms:publisher "SINTEF" .
 #-----------------------------------
 # section to deal with properties
 #-----------------------------------
