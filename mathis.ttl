@@ -31,7 +31,7 @@
     dcterms:title "Custom ontology for describing Mathis coater for batteries"@en ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     vann:preferredNamespacePrefix "mathis" ;
-    vann:preferredNamespaceUri    <https://w3id.org/batmachine/ont/mathis#> ;
+    vann:preferredNamespaceUri    <https://w3id.org/mathis/public/ontology#> ;
     owl:versionInfo "1.0.0" ;
     owl:versionIRI  <https://w3id.org/mathis/public/ontology/1.0.0> ;
     dcterms:issued   "2025-10-23"^^xsd:date ;
