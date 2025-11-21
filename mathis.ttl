@@ -26,11 +26,16 @@
     rdfs:comment "An extension of the EMMO ontology defining the equipment and processes for the coater equipment." ;
     dcterms:title "Custom ontology for describing Mathis coater for batteries"@en ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-    #owl:versionInfo "1.0.0" ;
+    owl:versionInfo "1.0.0" ;
     #owl:versionIRI  <https://w3id.org/mathis/public/ontology/1.0.0> ;
     dcterms:issued   "2025-10-23"^^xsd:date ;
     dcterms:modified "2025-11-21"^^xsd:date ;
-    dcterms:publisher "SINTEF" .
+    dcterms:publisher "SINTEF" ;
+    dcterms:contributor "SINTEF"@en ,"SINTEF Industry"@en ;
+    dcterms:creator 
+                    "Sridevi Krishnamurthi (SINTEF)"@en ,
+                    "Simon Clark (SINTEF)"@en ,
+                    "Sylvain Gouttebroze (SINTEF)"@en     .
 #-----------------------------------
 # section to deal with properties
 #-----------------------------------
