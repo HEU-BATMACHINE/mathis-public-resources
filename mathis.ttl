@@ -3,7 +3,6 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix emmo: <https://w3id.org/emmo#> .
-@prefix coater: <https://w3id.org/mathis/public/ontology#> .
 @prefix equipment: <https://w3id.org/batteryequipment/public/ontology#> .
 @prefix : <http://example.org/ontology/unknown#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -11,7 +10,11 @@
 @prefix chameo: <https://w3id.org/emmo/domain/characterisation-methodology/chameo#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann:    <http://purl.org/vocab/vann/> .
 @prefix csvw: <http://www.w3.org/ns/csvw#> .
+
+@base <https://w3id.org/mathis/public/ontology> .
+@prefix coater: <https://w3id.org/mathis/public/ontology#> .
 
 # Ontology Declaration
 # Declare this as an ontology and import BBO ontology
@@ -27,16 +30,18 @@
     rdfs:comment "An extension of the EMMO ontology defining the equipment and processes for the coater equipment." ;
     dcterms:title "Custom ontology for describing Mathis coater for batteries"@en ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
-    owl:versionInfo "1.0.0" ;
-    owl:versionIRI  <https://w3id.org/mathis/public/ontology/1.0.0> ;
+    vann:preferredNamespacePrefix "coater" ;
+    vann:preferredNamespaceUri    <https://w3id.org/mathis/public/ontology#> ;
+    dcterms:created   "2025-10-23"^^xsd:date ;
     dcterms:issued   "2025-10-23"^^xsd:date ;
     dcterms:modified "2025-11-21"^^xsd:date ;
     dcterms:publisher "SINTEF" ;
     dcterms:contributor "SINTEF"@en ,"SINTEF Industry"@en ;
-    dcterms:creator 
-                    "Sridevi Krishnamurthi (SINTEF)"@en ,
+    dcterms:creator "Sridevi Krishnamurthi (SINTEF)"@en ,
                     "Simon Clark (SINTEF)"@en ,
-                    "Sylvain Gouttebroze (SINTEF)"@en     .
+                    "Sylvain Gouttebroze (SINTEF)"@en ;
+    owl:versionIRI  <https://w3id.org/mathis/public/ontology/1.0.0> ;
+    owl:versionInfo "1.0."@en .
 #-----------------------------------
 # section to deal with properties
 #-----------------------------------
