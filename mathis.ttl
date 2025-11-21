@@ -18,7 +18,7 @@
 
 # Ontology Declaration
 # Declare this as an ontology and import BBO ontology
-<https://w3id.org/mathis/public/ontology#> rdf:type owl:Ontology ;
+<https://w3id.org/mathis/public/ontology> rdf:type owl:Ontology ;
     owl:imports <https://w3id.org/emmo/1.0.0-rc1> ,
                 <https://w3id.org/emmo/domain/characterisation-methodology/1.0.0/chameo-inferred> ;
     owl:imports <https://w3id.org/emmo/1.0.0-beta7/disciplines/manufacturing> ;
@@ -32,17 +32,16 @@
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
     vann:preferredNamespacePrefix "coater" ;
     vann:preferredNamespaceUri    <https://w3id.org/mathis/public/ontology#> ;
-    owl:versionInfo "1.0.0" ;
-    owl:versionIRI  <https://w3id.org/mathis/public/ontology/1.0.0> ;
     dcterms:created   "2025-10-23"^^xsd:date ;
     dcterms:issued   "2025-10-23"^^xsd:date ;
     dcterms:modified "2025-11-21"^^xsd:date ;
     dcterms:publisher "SINTEF" ;
     dcterms:contributor "SINTEF"@en ,"SINTEF Industry"@en ;
-    dcterms:creator 
-                    "Sridevi Krishnamurthi (SINTEF)"@en ,
+    dcterms:creator "Sridevi Krishnamurthi (SINTEF)"@en ,
                     "Simon Clark (SINTEF)"@en ,
-                    "Sylvain Gouttebroze (SINTEF)"@en     .
+                    "Sylvain Gouttebroze (SINTEF)"@en ;
+    owl:versionIRI  <https://w3id.org/mathis/public/ontology/1.0.0> ;
+    owl:versionInfo "1.0."@en .
 #-----------------------------------
 # section to deal with properties
 #-----------------------------------
