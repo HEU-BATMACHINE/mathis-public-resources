@@ -4,7 +4,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix emmo: <https://w3id.org/emmo#> .
 @prefix equipment: <https://w3id.org/batteryequipment/public/ontology#> .
-@prefix : <http://example.org/ontology/unknown#> .
+#@prefix : <http://example.org/ontology/unknown#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix battinfo: <http://w3id.org/battinfo#> .
 @prefix chameo: <https://w3id.org/emmo/domain/characterisation-methodology/chameo#> .
@@ -18,7 +18,7 @@
 
 # Ontology Declaration
 # Declare this as an ontology and import BBO ontology
-<https://w3id.org/mathis/public/ontology#> rdf:type owl:Ontology ;
+<https://w3id.org/mathis/public/ontology> rdf:type owl:Ontology ;
     owl:imports <https://w3id.org/emmo/1.0.0-rc1> ,
                 <https://w3id.org/emmo/domain/characterisation-methodology/1.0.0/chameo-inferred> ;
     owl:imports <https://w3id.org/emmo/1.0.0-beta7/disciplines/manufacturing> ;
@@ -41,7 +41,7 @@
                     "Simon Clark (SINTEF)"@en ,
                     "Sylvain Gouttebroze (SINTEF)"@en ;
     owl:versionIRI  <https://w3id.org/mathis/public/ontology/1.0.0> ;
-    owl:versionInfo "1.0."@en .
+    owl:versionInfo "1.0.0"@en .
 #-----------------------------------
 # section to deal with properties
 #-----------------------------------
@@ -394,17 +394,17 @@ coater:ElectrodeDryingProcess rdfs:subClassOf [
 coater:ElectrodeUnwindingProcess rdfs:subClassOf [
        rdf:type owl:Restriction ;
        # EMMO concept for hasTemporaryParticipant https://w3id.org/emmo#EMMO_35c29eb6_f57e_48d8_85af_854f9e926e77
-       #owl:onProperty emmo:EMMO_35c29eb6_f57e_48d8_85af_854f9e926e77 ;
+       owl:onProperty emmo:EMMO_35c29eb6_f57e_48d8_85af_854f9e926e77 ;
        # EMMO concept hasAgent https://w3id.org/emmo#EMMO_cd24eb82_a11c_4a31_96ea_32f870c5580a
-       owl:onProperty equipment:hasDevice ;
+       #owl:onProperty equipment:hasDevice ;
        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
        owl:onClass coater:UnwindingDevice] .
 
 coater:ElectrodeRewindingProcess rdfs:subClassOf [
        rdf:type owl:Restriction ;
        # EMMO concept for hasTemporaryParticipant https://w3id.org/emmo#EMMO_35c29eb6_f57e_48d8_85af_854f9e926e77
-       #owl:onProperty emmo:EMMO_35c29eb6_f57e_48d8_85af_854f9e926e77 ;
-       owl:onProperty equipment:hasDevice ;
+       owl:onProperty emmo:EMMO_35c29eb6_f57e_48d8_85af_854f9e926e77 ;
+       #owl:onProperty equipment:hasDevice ;
        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
        owl:onClass coater:RewindingDevice] .
 
@@ -412,51 +412,100 @@ coater:ElectrodeCoatingProcess rdfs:subClassOf [
        rdf:type owl:Restriction ;
        # EMMO concept for hasTemporaryParticipant https://w3id.org/emmo#EMMO_35c29eb6_f57e_48d8_85af_854f9e926e77
        owl:onProperty emmo:EMMO_35c29eb6_f57e_48d8_85af_854f9e926e77 ;
-       owl:onProperty equipment:hasDevice ;
+       #owl:onProperty equipment:hasDevice ;
        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
        owl:onClass coater:CoatingDevice] .
 
 #-----------------------------------------------------
 # Technical Data Properties #
 
-coater:hasRollerWidth rdf:type owl:DatatypeProperty ;
-    rdfs:subPropertyOf emmo:Length ;
+#coater:MyCoater_Width_1 a coater:WidthQuantity ;
+#  emmo:hasNumericalValue "200.0"^^xsd:decimal ;
+#  emmo:hasReferenceUnit  emmo:MilliMetre .
+
+coater:WidthQuantity a owl:Class ;
+  rdfs:subClassOf emmo:Length ;
+  rdfs:subClassOf
+    # exactly 1 numerical value (datatype decimal)
+    [ a owl:Restriction ;
+      owl:onProperty emmo:hasNumericalValue ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:decimal
+    ] ,
+    # exactly 1 reference unit, which must be millimetre
+    [ a owl:Restriction ;
+      owl:onProperty emmo:hasReferenceUnit ;
+      owl:hasValue emmo:MilliMetre
+    ] .
+
+coater:SpeedQuantity a owl:Class ;
+  rdfs:subClassOf emmo:Speed ;
+  rdfs:subClassOf
+    # exactly 1 numerical value (datatype decimal)
+    [ a owl:Restriction ;
+      owl:onProperty emmo:hasNumericalValue ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:decimal
+    ] ,
+    # exactly 1 reference unit, which must be millimetre
+    [ a owl:Restriction ;
+      owl:onProperty emmo:hasReferenceUnit ;
+      owl:hasValue emmo:MetrePerMinute
+    ] .
+
+coater:TemperatureQuantity a owl:Class ;
+  rdfs:subClassOf emmo:EMMO_affe07e4_e9bc_4852_86c6_69e26182a17f ;
+  rdfs:subClassOf
+    # exactly 1 numerical value (datatype decimal)
+    [ a owl:Restriction ;
+      owl:onProperty emmo:hasNumericalValue ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:decimal
+    ] ,
+    # exactly 1 reference unit, which must be millimetre
+    [ a owl:Restriction ;
+      owl:onProperty emmo:hasReferenceUnit ;
+      owl:hasValue emmo:DegreeCelsius
+    ] .
+
+coater:hasRollerWidth rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf emmo:hasQuantity ;
     rdfs:domain coater:CoaterDryerEquipment ;
-    rdfs:range xsd:float ;
+    rdfs:range coater:WidthQuantity ;
     rdfs:label "has Roller Width" ;
     rdfs:comment "Width of the roller in mm." .
 
-coater:hasSubstrateWidth rdf:type owl:DatatypeProperty ;
-    rdfs:subPropertyOf emmo:Length ;
+coater:hasSubstrateWidth rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf emmo:hasQuantity ;
     rdfs:domain coater:CoaterDryerEquipment ;
-    rdfs:range xsd:float ;
+    rdfs:range coater:WidthQuantity ;
     rdfs:label "has Substrate Width" ;
     rdfs:comment "Width of the substrate material in mm." .
 
-coater:hasCoatingWidth rdf:type owl:DatatypeProperty ;
-    rdfs:subPropertyOf emmo:Length ;
+coater:hasCoatingWidth rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf emmo:hasQuantity ;
     rdfs:domain coater:CoatingDevice ;
-    rdfs:range xsd:float ;
+    rdfs:range coater:WidthQuantity ;
     rdfs:label "has Coating Width" ;
     rdfs:comment "Width of the coating in mm." .
 
-coater:hasCoatingSpeedMin rdf:type owl:DatatypeProperty ;
-    rdfs:subPropertyOf emmo:Speed ;
+coater:hasCoatingSpeedMin rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf emmo:hasQuantity ;
     rdfs:domain coater:UnwindingDevice ;
-    rdfs:range xsd:float ;
+    rdfs:range coater:SpeedQuantity ;
     rdfs:label "has Minimum Material Speed" ;
     rdfs:comment "Minimum speed of the material through the equipment in m/min." .
 
-coater:hasCoatingSpeedMax rdf:type owl:DatatypeProperty ;
-    rdfs:subPropertyOf emmo:Speed ;
+coater:hasCoatingSpeedMax rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf emmo:hasQuantity ;
     rdfs:domain coater:UnwindingDevice ;
-    rdfs:range xsd:float ;
+    rdfs:range coater:SpeedQuantity ;
     rdfs:label "has Maximum Material Speed" ;
     rdfs:comment "Maximum speed of the material through the equipment in m/min." .
 
-coater:hasTemperatureMax rdf:type owl:DatatypeProperty ;
-    rdfs:subPropertyOf emmo:EMMO_affe07e4_e9bc_4852_86c6_69e26182a17f ;
+coater:hasTemperatureMax rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf emmo:hasQuantity ;
     rdfs:domain coater:HotAir_DryerDevice ;
-    rdfs:range xsd:float ;
+    rdfs:range coater:TemperatureQuantity ;
     rdfs:label "has Maximum Temperature" ;
     rdfs:comment "Maximum temperature in the hot air dryer in Celsius." .
